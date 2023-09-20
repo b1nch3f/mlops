@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-container-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-container
+  template:
+    metadata:
+      labels:
+        app: dev-container
+    spec:
+      containers:
+        - name: dev-container
+          image: jupyterlab-base:v1.1.1
+          volumeMounts:
+            - name: workspace
+              mountPath: /home
+      volumes:
+        - name: workspace
+          persistentVolumeClaim:
+            claimName: workspace-pvc

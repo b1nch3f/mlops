@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dev_container:
+    image: jupyterlab-base:v1.1.1
+    volumes:
+      - .:/home
+    ports:
+      - 8888:8888
